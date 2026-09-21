@@ -1,5 +1,6 @@
 package com.studio.rec.controller;
 
+import com.studio.rec.dto.TrackBudgetView;
 import com.studio.rec.entity.Track;
 import com.studio.rec.service.TrackService;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,12 @@ public class TrackController {
     @GetMapping
     public List<Track> list() {
         return trackService.list();
+    }
+
+    /** 各预约的曲目分钟账面：预约分钟 / 已排分钟 / 剩余分钟，数字以后台库内汇总为准 */
+    @GetMapping("/budgets")
+    public List<TrackBudgetView> listBudgets() {
+        return trackService.listBudgets();
     }
 
     @GetMapping("/{id}")
