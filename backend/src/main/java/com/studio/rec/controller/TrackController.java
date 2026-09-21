@@ -1,5 +1,6 @@
 package com.studio.rec.controller;
 
+import com.studio.rec.dto.TrackUsageView;
 import com.studio.rec.entity.Track;
 import com.studio.rec.service.TrackService;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,12 @@ public class TrackController {
     @GetMapping
     public List<Track> list() {
         return trackService.list();
+    }
+
+    /** 按预约的曲目时长账面：预约分钟、已排分钟、剩余分钟（后台汇总，页面不做加法） */
+    @GetMapping("/usage")
+    public List<TrackUsageView> usage() {
+        return trackService.usage();
     }
 
     @GetMapping("/{id}")
